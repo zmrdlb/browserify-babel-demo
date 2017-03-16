@@ -1,5 +1,8 @@
 module.exports = function(grunt) {
 
+	//压缩后的代码目录
+	var _product_dir = '../dist/browserify-babel-demo';
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
         browserify: {
@@ -37,12 +40,55 @@ module.exports = function(grunt) {
                 cwd: './develop/page',
                 src: ['**/*.js'],
                 dest: './bundle'
-            }
-       }
+            },
+			//生产环境
+			product: {
+                expand: true,
+                cwd: './develop/page',
+                src: ['**/*.js'],
+                dest: _product_dir+'/bundle'
+			}
+       },
+	   //压缩
+	   uglify: {
+		   options: {
+			   report: 'gzip'
+		   },
+		   apps: {
+			   cwd: _product_dir+'/bundle',
+			   src: ['*.js'],
+			   dest: _product_dir+'/bundle',
+			   expand: true,
+			   flatten: true,
+			   ext: '.js'
+		   },
+		   lib: {
+			   cwd: './lib',
+			   src: ['*.js'],
+			   dest: _product_dir+'/lib',
+			   expand: true,
+			   flatten: true,
+			   ext: '.js'
+		   }
+	   },
+	   //文件复制
+	   copy: {
+		   html: {
+			   expand: true,
+			   src: '*.html',
+			   dest: _product_dir
+		   }
+	   }
 	});
 
 	grunt.loadNpmTasks("grunt-browserify");
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
+	//grunt develop -v
 	grunt.registerTask('develop', ['browserify:develop']);
+
+	//grunt -v
+	grunt.registerTask('default', ['browserify:product','uglify','copy']);
 
 };

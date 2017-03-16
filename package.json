@@ -33,7 +33,9 @@
     "babelify": "^7.3.0",
     "browserify-shim": "^3.8.13",
     "grunt": "^1.0.1",
-    "grunt-browserify": "^5.0.0"
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^2.2.0"
   },
   "dependencies": {
     "jquery": "^3.1.1"
