@@ -1,0 +1,12 @@
+"browser": {
+    "jquery": "jquery-bundle.js"
+},
+"browserify-shim": {
+    "jquery": "$"
+},
+"browserify": {
+  "transform": [
+    "babelify",
+    "browserify-shim"
+  ]
+},
