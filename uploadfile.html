@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="renderer" content="webkit">
+        <title>上传文件</title>
+        <style>
+            input {
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h3>文件上传：</h3>
+        选择一个文件上传: <br />
+        <form action="/file_upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" size="50" />
+            <input type="text" name="name" value="zmr" />
+            <input type="submit" value="提交" />
+        </form>
+    </body>
+</html>
